@@ -1,0 +1,13 @@
+sentence <-  article? subject verb ( preposition? article? (object / object preposition object ))
+spaces <- [ ]*
+article <- spaces ("the" / "the two" / "a")
+preposition <- spaces ("on" / "at" / "to" / "with")
+subject <- spaces ("man" / "men" / "dog" / "dogs" / "cat")
+verb <- spaces ("sat" / "saw" / "shot" / "gave")
+object <- spaces ("cannon" / "hat" / "mat")
+
+
+spaces <- [ ]*
+cmd_doc <- usage
+usage <- "Usage:" spaces use_examples
+use_examples <- use_example

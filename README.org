@@ -1,0 +1,65 @@
+* Warning
+I'm committing this because I sense I'm not going to spend
+any more calories on this, but I don't want to lose it.
+
+It is currently a mess.  A slightly interesting mess, but still a
+mess.
+
+The parser for the docopt input is usable.  But then, if you
+look at the testcases  you discover that the python vesion
+has accumulated all kinds of cool additional feature.
+
+The code generating phases are now out of synch with the parse.
+
+The only code generator I worked on was one for bash, which is
+a terrible target language!  So that's not done either.
+
+* Intro
+Docopt is a fun approach to the problem of specifying and parsing
+shell command line arguments.  See docopt.org.  The idea is that
+you write your command's usage message in a standard format and then
+some tool converts that message into a parser for your command line.
+
+The original version was written in Python and many more exist now.
+
+I was amused and wanted a solution for Bash scripts.  The existing
+solution wasn't what I wanted, since it calls out to a python
+program to do the work.
+
+So cl-docopt is a a step toward what I wanted.  It includes a parser
+for the usage message, and then some code that walks the resulting
+parse tree and generates the bash code to handle that.  It's woefully
+incomplete.
+
+So, for example say we had this usage.
+
+  go-for-it <script-url>
+  go-for-it fetch <document-url>
+  go-for-it run <script-url>
+  go-for-it add-key <key-url>
+  go-for-it list-keys [ -v | --verbose ]
+  go-for-it remove-key <key-designation
+
+We get this bash code
+
+  function parse_arguments {
+    ARGS = "$@"
+    cmd = '<unknown>'
+    case $#ARGS in
+    *) echo "Error" ; usage() ; exit 1 ;;
+    1) 
+
+    2) 
+    COMMMAND='<unknown>'
+    if [ -z $#ARGS ] ; then
+      parse_error='insufficent arguments'
+      exit 1
+    fi
+    ARG=$( shift $ARGS )
+    case $ARG in
+    fetch): COMMAND=fetch ;;
+    run): COMMAND=fetch ;;
+    add-key): COMMAND=add-key ;;
+    list-keys): COMMAND=list-keys ;;
+    remove-keys): COMMAND=remove-keys ;;
+    *)

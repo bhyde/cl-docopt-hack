@@ -1,0 +1,4 @@
+Usage:
+  foo start -o (--input | --output=FOO)
+  foo stop NAME [--delay <seconds>]
+  foo [options] [--] <file>
